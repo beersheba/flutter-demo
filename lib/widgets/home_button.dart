@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class HomeButton extends StatelessWidget {
   final String text;
-  final void Function()? onPressed;
+  final VoidCallback? onPressed;
 
   const HomeButton({required this.text, this.onPressed, Key? key})
       : super(key: key);
