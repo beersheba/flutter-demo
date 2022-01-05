@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'const.dart';
 import 'screens/home.dart';
@@ -15,9 +14,8 @@ class App extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           centerTitle: false,
           elevation: 2,
-          iconTheme: IconThemeData(color: Colors.black),
         ),
-        primarySwatch: Colors.lightBlue
+        primarySwatch: Colors.lightBlue,
       ),
       home: Scaffold(
         appBar: AppBar(
