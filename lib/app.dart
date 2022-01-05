@@ -14,15 +14,10 @@ class App extends StatelessWidget {
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
           centerTitle: false,
-          backgroundColor: primaryColor,
-          foregroundColor: Colors.black,
           elevation: 2,
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: Colors.transparent,
-          ),
           iconTheme: IconThemeData(color: Colors.black),
         ),
-        primaryColor: primaryColor,
+        primarySwatch: Colors.lightBlue
       ),
       home: Scaffold(
         appBar: AppBar(
