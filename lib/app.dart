@@ -14,13 +14,13 @@ class App extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           centerTitle: false,
           elevation: 2,
+          titleSpacing: 10,
         ),
         primarySwatch: Colors.lightBlue,
       ),
       home: Scaffold(
         appBar: AppBar(
           leading: Container(),
-          titleSpacing: 10,
           title: const Text(
             titleMain,
             style: TextStyle(

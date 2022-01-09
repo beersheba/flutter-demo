@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:home_task/const.dart';
 import 'package:home_task/widgets/home_button.dart';
 
+import 'tiles.dart';
+
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -16,7 +18,10 @@ class Home extends StatelessWidget {
             HomeButton(
               text: title1,
               onPressed: () {
-                //todo task 2
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Tiles()),
+                );
               },
             ),
             HomeButton(
