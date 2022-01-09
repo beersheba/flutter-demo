@@ -12,6 +12,8 @@ class Tiles extends StatefulWidget {
 }
 
 class _TilesState extends State<Tiles> {
+  List<Color> colors = List.filled(4, Colors.grey);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,13 +33,20 @@ class _TilesState extends State<Tiles> {
         padding: const EdgeInsets.only(top: 80, left: 25, right: 25),
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
-        children: [for (int i = 0; i < 4; i++) Tile()],
+        children: [
+          for (int i = 0; i < 4; i++)
+            Tile(
+              color: colors[i],
+            )
+        ],
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(8.0),
         child: FloatingActionButton(
           child: const Icon(Icons.edit_outlined),
-          onPressed: () => setState(() {}),
+          onPressed: () => setState(() {
+            colors = List.generate(4, (index) => generateColor());
+          }),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(15)),
           ),
@@ -45,4 +54,13 @@ class _TilesState extends State<Tiles> {
       ),
     );
   }
+}
+
+Color generateColor() {
+  int max = 255;
+  Random random = Random();
+  int r = random.nextInt(max);
+  int g = random.nextInt(max);
+  int b = random.nextInt(max);
+  return Color.fromARGB(max, r, g, b);
 }
