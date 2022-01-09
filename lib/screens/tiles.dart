@@ -1,8 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:home_task/const.dart';
 import 'package:home_task/widgets/tile.dart';
+
+import '../util.dart';
 
 class Tiles extends StatefulWidget {
   const Tiles({Key? key}) : super(key: key);
@@ -12,7 +12,13 @@ class Tiles extends StatefulWidget {
 }
 
 class _TilesState extends State<Tiles> {
-  List<Color> colors = List.filled(4, Colors.grey);
+  late List<Color> _colors;
+
+  @override
+  void initState() {
+    super.initState();
+    _colors = List.filled(4, Colors.grey);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +42,7 @@ class _TilesState extends State<Tiles> {
         children: [
           for (int i = 0; i < 4; i++)
             Tile(
-              color: colors[i],
+              color: _colors[i],
             )
         ],
       ),
@@ -45,7 +51,7 @@ class _TilesState extends State<Tiles> {
         child: FloatingActionButton(
           child: const Icon(Icons.edit_outlined),
           onPressed: () => setState(() {
-            colors = List.generate(4, (index) => generateColor());
+            generateColors();
           }),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -54,13 +60,7 @@ class _TilesState extends State<Tiles> {
       ),
     );
   }
-}
 
-Color generateColor() {
-  int max = 255;
-  Random random = Random();
-  int r = random.nextInt(max);
-  int g = random.nextInt(max);
-  int b = random.nextInt(max);
-  return Color.fromARGB(max, r, g, b);
+  List<Color> generateColors() =>
+      _colors = List.generate(4, (index) => generateColor());
 }
