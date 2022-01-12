@@ -34,7 +34,7 @@ class _ColorListState extends State<ColorList> {
         },
       ),
       title: title2,
-      onPressed: () => setState(() {
+      onFabPressed: () => setState(() {
         _colors = generateColors(1000);
       }),
     );

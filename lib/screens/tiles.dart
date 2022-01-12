@@ -37,7 +37,7 @@ class _TilesState extends State<Tiles> {
         ],
       ),
       title: title1,
-      onPressed: () => setState(() {
+      onFabPressed: () => setState(() {
         _colors = generateColors(4);
       }),
     );

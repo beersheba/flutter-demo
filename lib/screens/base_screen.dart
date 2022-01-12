@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 class BaseScreen extends StatelessWidget {
   final Widget? body;
   final String title;
-  final VoidCallback? onPressed;
+  final VoidCallback? onFabPressed;
 
   const BaseScreen(
-      {required this.body, required this.title, this.onPressed, Key? key})
+      {required this.body, required this.title, this.onFabPressed, Key? key})
       : super(key: key);
 
   @override
@@ -24,10 +24,10 @@ class BaseScreen extends StatelessWidget {
         title: Text(title),
       ),
       body: body,
-      floatingActionButton: onPressed != null
+      floatingActionButton: onFabPressed != null
           ? FloatingActionButton(
               child: const Icon(Icons.edit_outlined),
-              onPressed: onPressed,
+              onPressed: onFabPressed,
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(15)),
               ),
