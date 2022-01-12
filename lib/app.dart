@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:home_task/screens/tiles.dart';
 
-import 'const.dart';
+import 'screens/color_list.dart';
 import 'screens/home.dart';
 
 class App extends StatelessWidget {
@@ -10,6 +11,12 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Home Task',
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const Home(),
+        '/tiles': (context) => const Tiles(),
+        '/list': (context) => const ColorList(),
+      },
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
           centerTitle: false,
@@ -17,26 +24,6 @@ class App extends StatelessWidget {
           titleSpacing: 10,
         ),
         primarySwatch: Colors.lightBlue,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          leading: Container(),
-          title: const Text(
-            titleMain,
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 20,
-              shadows: <Shadow>[
-                Shadow(
-                  offset: Offset(0, 5),
-                  blurRadius: 9,
-                  color: Colors.black26,
-                ),
-              ],
-            ),
-          ),
-        ),
-        body: const Home(),
       ),
     );
   }

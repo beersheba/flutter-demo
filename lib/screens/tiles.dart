@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home_task/const.dart';
+import 'package:home_task/screens/base_screen.dart';
 import 'package:home_task/widgets/tile.dart';
 
 import '../util.dart';
@@ -22,18 +23,7 @@ class _TilesState extends State<Tiles> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon: const Icon(Icons.arrow_back_outlined),
-              onPressed: () => Navigator.pop(context),
-            );
-          },
-        ),
-        title: const Text(title1),
-      ),
+    return BaseScreen(
       body: GridView.count(
         crossAxisCount: 2,
         padding: const EdgeInsets.only(top: 80, left: 25, right: 25),
@@ -46,21 +36,10 @@ class _TilesState extends State<Tiles> {
             )
         ],
       ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: FloatingActionButton(
-          child: const Icon(Icons.edit_outlined),
-          onPressed: () => setState(() {
-            generateColors();
-          }),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(15)),
-          ),
-        ),
-      ),
+      title: title1,
+      onFabPressed: () => setState(() {
+        _colors = generateColors(4);
+      }),
     );
   }
-
-  List<Color> generateColors() =>
-      _colors = List.generate(4, (index) => generateColor());
 }
