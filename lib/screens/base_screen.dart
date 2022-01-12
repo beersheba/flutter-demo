@@ -6,10 +6,7 @@ class BaseScreen extends StatelessWidget {
   final VoidCallback? onPressed;
 
   const BaseScreen(
-      {required this.body,
-      required this.title,
-      required this.onPressed,
-      Key? key})
+      {required this.body, required this.title, this.onPressed, Key? key})
       : super(key: key);
 
   @override
@@ -27,16 +24,15 @@ class BaseScreen extends StatelessWidget {
         title: Text(title),
       ),
       body: body,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: FloatingActionButton(
-          child: const Icon(Icons.edit_outlined),
-          onPressed: onPressed,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(15)),
-          ),
-        ),
-      ),
+      floatingActionButton: onPressed != null
+          ? FloatingActionButton(
+              child: const Icon(Icons.edit_outlined),
+              onPressed: onPressed,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(15)),
+              ),
+            )
+          : null,
     );
   }
 }

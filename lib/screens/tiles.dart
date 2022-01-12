@@ -38,11 +38,8 @@ class _TilesState extends State<Tiles> {
       ),
       title: title1,
       onPressed: () => setState(() {
-        generateColors();
+        _colors = generateColors(4);
       }),
     );
   }
-
-  List<Color> generateColors() =>
-      _colors = List.generate(4, (index) => generateColor());
 }

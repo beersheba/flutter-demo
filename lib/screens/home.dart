@@ -40,7 +40,7 @@ class Home extends StatelessWidget {
               HomeButton(
                 text: title2,
                 onPressed: () {
-                  //todo task 3
+                  Navigator.pushNamed(context, '/list');
                 },
               ),
               HomeButton(
