@@ -11,6 +11,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const Tiles());
     case colorListScreenRoute:
       return MaterialPageRoute(builder: (context) => const ColorList());
+    case codelabScreenRoute:
+      return MaterialPageRoute(builder: (context) => const Codelab());
+    case codelabSavedScreenRoute:
+      final args = settings.arguments as List<Widget>;
+      return MaterialPageRoute(builder: (context) => CodelabSaved(words: args));
     default:
       return MaterialPageRoute(builder: (context) => const Home());
   }
