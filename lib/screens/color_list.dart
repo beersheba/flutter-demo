@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:home_task/screens/base_screen.dart';
-import 'package:home_task/util.dart';
+import 'package:home_task/common/util.dart';
 
-import '../const.dart';
+import '../common/const.dart';
 
 class ColorList extends StatefulWidget {
   const ColorList({Key? key}) : super(key: key);

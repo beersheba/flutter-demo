@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:home_task/const.dart';
+import 'package:home_task/common/const.dart';
 import 'package:home_task/screens/base_screen.dart';
 import 'package:home_task/widgets/tile.dart';
 
-import '../util.dart';
+import '../common/util.dart';
 
 class Tiles extends StatefulWidget {
   const Tiles({Key? key}) : super(key: key);
