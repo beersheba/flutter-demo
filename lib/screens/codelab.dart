@@ -21,6 +21,7 @@ class _CodelabState extends State<Codelab> {
     _suggestions = <WordPair>[];
     _saved = <WordPair>{};
     _biggerFont = const TextStyle(fontSize: 18);
+    _generateSuggestions();
   }
 
   @override
@@ -38,23 +39,28 @@ class _CodelabState extends State<Codelab> {
     );
   }
 
-  Widget _buildSuggestions() {
-    return ListView.builder(
-      padding: const EdgeInsets.all(16),
-      itemBuilder: _buildList,
-    );
+  void _generateSuggestions() {
+    setState(() {
+      _suggestions.addAll(generateWordPairs().take(10));
+    });
   }
 
-  Widget _buildList(context, i) {
-      if (i.isOdd) {
-        return const Divider();
-      }
-      final index = i ~/ 2;
-      if (index >= _suggestions.length) {
-        _suggestions.addAll(generateWordPairs().take(10));
-      }
-      return _buildRow(_suggestions[index]);
-    }
+  Widget _buildSuggestions() {
+    return NotificationListener<ScrollEndNotification>(
+      onNotification: (_) {
+        _generateSuggestions();
+        return true;
+      },
+      child: ListView.separated(
+        itemCount: _suggestions.length,
+        separatorBuilder: (context, index) => const Divider(),
+        padding: const EdgeInsets.all(16),
+        itemBuilder: (context, index) {
+          return _buildRow(_suggestions[index]);
+        },
+      ),
+    );
+  }
 
   Widget _buildRow(WordPair pair) {
     final alreadySaved = _saved.contains(pair);
@@ -102,6 +108,10 @@ class _CodelabState extends State<Codelab> {
           ).toList()
         : <Widget>[];
 
-    Navigator.pushNamed(context, codelabSavedScreenRoute, arguments: divided);
+    Navigator.pushNamed(
+      context,
+      codelabSavedScreenRoute,
+      arguments: divided,
+    );
   }
 }
