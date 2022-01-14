@@ -11,9 +11,17 @@ class Codelab extends StatefulWidget {
 }
 
 class _CodelabState extends State<Codelab> {
-  final _suggestions = <WordPair>[];
-  final _saved = <WordPair>{};
-  final _biggerFont = const TextStyle(fontSize: 18);
+  late List<WordPair> _suggestions;
+  late Set<WordPair> _saved;
+  late TextStyle _biggerFont;
+
+  @override
+  void initState() {
+    super.initState();
+    _suggestions = <WordPair>[];
+    _saved = <WordPair>{};
+    _biggerFont = const TextStyle(fontSize: 18);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,18 +41,20 @@ class _CodelabState extends State<Codelab> {
   Widget _buildSuggestions() {
     return ListView.builder(
       padding: const EdgeInsets.all(16),
-      itemBuilder: (context, i) {
-        if (i.isOdd) {
-          return const Divider();
-        }
-        final index = i ~/ 2;
-        if (index >= _suggestions.length) {
-          _suggestions.addAll(generateWordPairs().take(10));
-        }
-        return _buildRow(_suggestions[index]);
-      },
+      itemBuilder: _buildList,
     );
   }
+
+  Widget _buildList(context, i) {
+      if (i.isOdd) {
+        return const Divider();
+      }
+      final index = i ~/ 2;
+      if (index >= _suggestions.length) {
+        _suggestions.addAll(generateWordPairs().take(10));
+      }
+      return _buildRow(_suggestions[index]);
+    }
 
   Widget _buildRow(WordPair pair) {
     final alreadySaved = _saved.contains(pair);
@@ -60,14 +70,18 @@ class _CodelabState extends State<Codelab> {
       ),
       onTap: () {
         setState(() {
-          if (alreadySaved) {
-            _saved.remove(pair);
-          } else {
-            _saved.add(pair);
-          }
+          _manageSaved(alreadySaved, pair);
         });
       },
     );
+  }
+
+  void _manageSaved(bool alreadySaved, WordPair pair) {
+    if (alreadySaved) {
+      _saved.remove(pair);
+    } else {
+      _saved.add(pair);
+    }
   }
 
   void _pushSaved() {
