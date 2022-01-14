@@ -54,29 +54,25 @@ class _CodelabState extends State<Codelab> {
         separatorBuilder: (context, index) => const Divider(),
         padding: const EdgeInsets.all(16),
         itemBuilder: (context, index) {
-          return _buildRow(_suggestions[index]);
+          return ListTile(
+            title: Text(
+              _suggestions[index].asPascalCase,
+              style: biggerFont,
+            ),
+            trailing: Icon(
+              _alreadySaved(index) ? Icons.favorite : Icons.favorite_border,
+              color: _alreadySaved(index) ? Colors.red : null,
+              semanticLabel:
+                  _alreadySaved(index) ? 'Remove from saved' : 'Save',
+            ),
+            onTap: () {
+              setState(() {
+                _manageSaved(_alreadySaved(index), _suggestions[index]);
+              });
+            },
+          );
         },
       ),
-    );
-  }
-
-  Widget _buildRow(WordPair pair) {
-    final alreadySaved = _saved.contains(pair);
-    return ListTile(
-      title: Text(
-        pair.asPascalCase,
-        style: biggerFont,
-      ),
-      trailing: Icon(
-        alreadySaved ? Icons.favorite : Icons.favorite_border,
-        color: alreadySaved ? Colors.red : null,
-        semanticLabel: alreadySaved ? 'Remove from saved' : 'Save',
-      ),
-      onTap: () {
-        setState(() {
-          _manageSaved(alreadySaved, pair);
-        });
-      },
     );
   }
 
@@ -86,6 +82,10 @@ class _CodelabState extends State<Codelab> {
     } else {
       _saved.add(pair);
     }
+  }
+
+  bool _alreadySaved(int index) {
+    return _saved.contains(_suggestions[index]);
   }
 
   void _pushSaved() {
