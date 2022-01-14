@@ -13,14 +13,12 @@ class Codelab extends StatefulWidget {
 class _CodelabState extends State<Codelab> {
   late List<WordPair> _suggestions;
   late Set<WordPair> _saved;
-  late TextStyle _biggerFont;
 
   @override
   void initState() {
     super.initState();
     _suggestions = <WordPair>[];
     _saved = <WordPair>{};
-    _biggerFont = const TextStyle(fontSize: 18);
     _generateSuggestions();
   }
 
@@ -67,7 +65,7 @@ class _CodelabState extends State<Codelab> {
     return ListTile(
       title: Text(
         pair.asPascalCase,
-        style: _biggerFont,
+        style: biggerFont,
       ),
       trailing: Icon(
         alreadySaved ? Icons.favorite : Icons.favorite_border,
@@ -96,7 +94,7 @@ class _CodelabState extends State<Codelab> {
         return ListTile(
           title: Text(
             pair.asPascalCase,
-            style: _biggerFont,
+            style: biggerFont,
           ),
         );
       },
