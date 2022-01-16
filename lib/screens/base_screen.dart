@@ -7,7 +7,11 @@ class BaseScreen extends StatelessWidget {
   final List<Widget>? actions;
 
   const BaseScreen(
-      {required this.body, required this.title, this.onFabPressed, this.actions, Key? key})
+      {required this.body,
+      required this.title,
+      this.onFabPressed,
+      this.actions,
+      Key? key})
       : super(key: key);
 
   @override
