@@ -25,7 +25,36 @@ class _CodelabState extends State<Codelab> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      body: _buildSuggestions(),
+      body: NotificationListener<ScrollEndNotification>(
+        onNotification: (_) {
+          _generateSuggestions();
+          return true;
+        },
+        child: ListView.separated(
+          itemCount: _suggestions.length,
+          separatorBuilder: (context, index) => const Divider(),
+          padding: const EdgeInsets.all(16),
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text(
+                _suggestions[index].asPascalCase,
+                style: biggerFont,
+              ),
+              trailing: Icon(
+                _alreadySaved(index) ? Icons.favorite : Icons.favorite_border,
+                color: _alreadySaved(index) ? Colors.red : null,
+                semanticLabel:
+                    _alreadySaved(index) ? 'Remove from saved' : 'Save',
+              ),
+              onTap: () {
+                setState(() {
+                  _manageSaved(_alreadySaved(index), _suggestions[index]);
+                });
+              },
+            );
+          },
+        ),
+      ),
       title: title3,
       actions: [
         IconButton(
@@ -43,39 +72,6 @@ class _CodelabState extends State<Codelab> {
     });
   }
 
-  Widget _buildSuggestions() {
-    return NotificationListener<ScrollEndNotification>(
-      onNotification: (_) {
-        _generateSuggestions();
-        return true;
-      },
-      child: ListView.separated(
-        itemCount: _suggestions.length,
-        separatorBuilder: (context, index) => const Divider(),
-        padding: const EdgeInsets.all(16),
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(
-              _suggestions[index].asPascalCase,
-              style: biggerFont,
-            ),
-            trailing: Icon(
-              _alreadySaved(index) ? Icons.favorite : Icons.favorite_border,
-              color: _alreadySaved(index) ? Colors.red : null,
-              semanticLabel:
-                  _alreadySaved(index) ? 'Remove from saved' : 'Save',
-            ),
-            onTap: () {
-              setState(() {
-                _manageSaved(_alreadySaved(index), _suggestions[index]);
-              });
-            },
-          );
-        },
-      ),
-    );
-  }
-
   void _manageSaved(bool alreadySaved, WordPair pair) {
     if (alreadySaved) {
       _saved.remove(pair);
@@ -89,27 +85,10 @@ class _CodelabState extends State<Codelab> {
   }
 
   void _pushSaved() {
-    final tiles = _saved.map(
-      (pair) {
-        return ListTile(
-          title: Text(
-            pair.asPascalCase,
-            style: biggerFont,
-          ),
-        );
-      },
-    );
-    final divided = tiles.isNotEmpty
-        ? ListTile.divideTiles(
-            context: context,
-            tiles: tiles,
-          ).toList()
-        : <Widget>[];
-
     Navigator.pushNamed(
       context,
       codelabSavedScreenRoute,
-      arguments: divided,
+      arguments: _saved,
     );
   }
 }
