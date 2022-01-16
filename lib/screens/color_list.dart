@@ -4,14 +4,14 @@ import 'package:home_task/common/util.dart';
 
 import '../common/const.dart';
 
-class ColorList extends StatefulWidget {
-  const ColorList({Key? key}) : super(key: key);
+class ColorListScreen extends StatefulWidget {
+  const ColorListScreen({Key? key}) : super(key: key);
 
   @override
-  _ColorListState createState() => _ColorListState();
+  _ColorListScreenState createState() => _ColorListScreenState();
 }
 
-class _ColorListState extends State<ColorList> {
+class _ColorListScreenState extends State<ColorListScreen> {
   late List<Color> _colors;
 
   @override

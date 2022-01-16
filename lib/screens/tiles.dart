@@ -5,14 +5,14 @@ import 'package:home_task/widgets/tile.dart';
 
 import '../common/util.dart';
 
-class Tiles extends StatefulWidget {
-  const Tiles({Key? key}) : super(key: key);
+class TilesScreen extends StatefulWidget {
+  const TilesScreen({Key? key}) : super(key: key);
 
   @override
-  State<Tiles> createState() => _TilesState();
+  State<TilesScreen> createState() => _TilesScreenState();
 }
 
-class _TilesState extends State<Tiles> {
+class _TilesScreenState extends State<TilesScreen> {
   late List<Color> _colors;
 
   @override
