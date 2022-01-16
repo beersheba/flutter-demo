@@ -10,25 +10,20 @@ class CodelabSaved extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tiles = words.map(
-      (pair) {
-        return ListTile(
-          title: Text(
-            pair.asPascalCase,
-            style: biggerFont,
-          ),
-        );
-      },
-    );
-    final divided = tiles.isNotEmpty
-        ? ListTile.divideTiles(
-            context: context,
-            tiles: tiles,
-          ).toList()
-        : <Widget>[];
+    final tiles = [
+      for (final pair in words)
+        ListTile(title: Text(pair.asPascalCase, style: biggerFont)),
+    ];
 
     return BaseScreen(
-      body: ListView(children: divided),
+      body: ListView(
+        children: tiles.isNotEmpty
+            ? ListTile.divideTiles(
+                context: context,
+                tiles: tiles,
+              ).toList()
+            : [],
+      ),
       title: 'Saved Suggestions',
     );
   }
