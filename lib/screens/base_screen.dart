@@ -4,9 +4,14 @@ class BaseScreen extends StatelessWidget {
   final Widget? body;
   final String title;
   final VoidCallback? onFabPressed;
+  final List<Widget>? actions;
 
   const BaseScreen(
-      {required this.body, required this.title, this.onFabPressed, Key? key})
+      {required this.body,
+      required this.title,
+      this.onFabPressed,
+      this.actions,
+      Key? key})
       : super(key: key);
 
   @override
@@ -22,6 +27,7 @@ class BaseScreen extends StatelessWidget {
           },
         ),
         title: Text(title),
+        actions: actions,
       ),
       body: body,
       floatingActionButton: onFabPressed != null

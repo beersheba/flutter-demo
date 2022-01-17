@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:home_task/const.dart';
+import 'package:home_task/common/const.dart';
 import 'package:home_task/widgets/home_button.dart';
 
 class Home extends StatelessWidget {
@@ -34,19 +34,19 @@ class Home extends StatelessWidget {
               HomeButton(
                 text: title1,
                 onPressed: () {
-                  Navigator.pushNamed(context, '/tiles');
+                  Navigator.pushNamed(context, tilesScreenRoute);
                 },
               ),
               HomeButton(
                 text: title2,
                 onPressed: () {
-                  Navigator.pushNamed(context, '/list');
+                  Navigator.pushNamed(context, colorListScreenRoute);
                 },
               ),
               HomeButton(
                 text: title3,
                 onPressed: () {
-                  //todo task 4
+                  Navigator.pushNamed(context, codelabScreenRoute);
                 },
               ),
               HomeButton(
