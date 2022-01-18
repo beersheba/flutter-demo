@@ -16,6 +16,6 @@ Future<List<Photo>> fetchPhotos() async {
 }
 
 List<Photo> _parsePhotos(String body) {
-  final parsed = jsonDecode(body).cast<Map<String, dynamic>>();
+  final parsed = jsonDecode(body) as List;
   return parsed.map<Photo>((json) => Photo.fromJson(json)).toList();
 }
