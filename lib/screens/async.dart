@@ -33,13 +33,14 @@ class _AsyncScreenState extends State<AsyncScreen> {
               );
             } else if (snapshot.hasData) {
               List<Photo> photos = snapshot.data!;
-              return ListView.builder(
-                itemCount: photos.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(
-                        left: 16.0, right: 16.0, top: 16.0),
-                    child: ClipRRect(
+              return Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: ListView.separated(
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 16.0),
+                  itemCount: photos.length,
+                  itemBuilder: (context, index) {
+                    return ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: Stack(
                         fit: StackFit.passthrough,
@@ -70,9 +71,9 @@ class _AsyncScreenState extends State<AsyncScreen> {
                           )
                         ],
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               );
             } else {
               return const Center(
