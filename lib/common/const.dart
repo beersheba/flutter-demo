@@ -17,3 +17,4 @@ const asyncRequestScreenRoute = 'async';
 
 //Styles
 const biggerFont = TextStyle(fontSize: 18);
+const expandedFont = TextStyle(height: 2);

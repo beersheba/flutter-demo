@@ -45,17 +45,26 @@ class _AsyncScreenState extends State<AsyncScreen> {
                         fit: StackFit.passthrough,
                         alignment: Alignment.bottomCenter,
                         children: [
-                          Image.network(photos[index].url,
-                              height: MediaQuery.of(context).size.height / 3,
-                              fit: BoxFit.none),
+                          Image.network(
+                            photos[index].url,
+                            height: MediaQuery.of(context).size.height / 3,
+                            fit: BoxFit.none,
+                          ),
                           Container(
-                            height: MediaQuery.of(context).size.height / 12,
                             color: Colors.blue,
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                photos[index].title,
-                                style: biggerFont,
+                              padding: const EdgeInsets.only(
+                                  left: 16.0, bottom: 8.0),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(photos[index].title,
+                                        style: expandedFont),
+                                  ),
+                                  SizedBox(
+                                      width:
+                                          MediaQuery.of(context).size.width / 4)
+                                ],
                               ),
                             ),
                           )
