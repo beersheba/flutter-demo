@@ -12,13 +12,7 @@ class AsyncScreen extends StatefulWidget {
 }
 
 class _AsyncScreenState extends State<AsyncScreen> {
-  late Future<List<Photo>> _futureList;
-
-  @override
-  void initState() {
-    super.initState();
-    _futureList = api.fetchPhotos();
-  }
+  Future<List<Photo>>? _futureList;
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +22,7 @@ class _AsyncScreenState extends State<AsyncScreen> {
           future: _futureList,
           builder: (context, snapshot) {
             if (snapshot.hasError) {
-              return const Center(
-                child: Text('An error has occurred!'),
-              );
+              return const Text('An error has occurred!');
             } else if (snapshot.hasData) {
               List<Photo> photos = snapshot.data!;
               return Padding(
@@ -76,9 +68,7 @@ class _AsyncScreenState extends State<AsyncScreen> {
                 ),
               );
             } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+              return const Text('Press button to load the data');
             }
           },
         ),
