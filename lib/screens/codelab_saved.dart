@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:home_task/common/const.dart';
 import 'package:home_task/screens/base_screen.dart';
 
-class CodelabSaved extends StatelessWidget {
+class CodelabSavedScreen extends StatelessWidget {
   final Set<WordPair> words;
 
-  const CodelabSaved({required this.words, Key? key}) : super(key: key);
+  const CodelabSavedScreen({required this.words, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:home_task/common/const.dart';
 import 'package:home_task/widgets/home_button.dart';
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class Home extends StatelessWidget {
               HomeButton(
                 text: title4,
                 onPressed: () {
-                  //todo task 5
+                  Navigator.pushNamed(context, asyncRequestScreenRoute);
                 },
               ),
             ],

@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:home_task/common/const.dart';
 import 'package:home_task/screens/base_screen.dart';
 
-class Codelab extends StatefulWidget {
-  const Codelab({Key? key}) : super(key: key);
+class CodelabScreen extends StatefulWidget {
+  const CodelabScreen({Key? key}) : super(key: key);
 
   @override
-  _CodelabState createState() => _CodelabState();
+  _CodelabScreenState createState() => _CodelabScreenState();
 }
 
-class _CodelabState extends State<Codelab> {
+class _CodelabScreenState extends State<CodelabScreen> {
   late List<WordPair> _suggestions;
   late Set<WordPair> _saved;
 

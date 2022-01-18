@@ -13,6 +13,8 @@ const tilesScreenRoute = 'tiles';
 const colorListScreenRoute = 'list';
 const codelabScreenRoute = 'codelab';
 const codelabSavedScreenRoute = 'codelab_saved';
+const asyncRequestScreenRoute = 'async';
 
 //Styles
 const biggerFont = TextStyle(fontSize: 18);
+const expandedFont = TextStyle(height: 2);
